@@ -34,7 +34,7 @@ public class GameOfLifeCell: Tile {
 
         //--------------------------------------------------
 
-        Renderer renderer = game_object_.GetComponent<Renderer> ();
+        Renderer renderer = game_object.GetComponent<Renderer> ();
         renderer.material = is_alive_ ? cfg_.alive_material : cfg_.dead_material;
     }
 }

@@ -15,7 +15,7 @@ public class Game: MonoBehaviour {
 
     void Start() {
 
-        board_ = new GameOfLifeableBoard (10, 10, cell_cfg);
+        board_ = new GameOfLifeableBoard (new Vector2Int (10, 10), cell_cfg);
         board_.ReviveTile (0, 0);
         board_.ReviveTile (0, 1);
         board_.ReviveTile (1, 0);

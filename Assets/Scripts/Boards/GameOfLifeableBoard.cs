@@ -14,20 +14,20 @@ public class GameOfLifeableBoard: Board {
 
     //--------------------------------------------------
 
-    public GameOfLifeableBoard (int width, int height, GameOfLifeCellCfg cell_cfg):
-        base(width, height)
+    public GameOfLifeableBoard (Vector2Int size/*, GameOfLifeCellCfg cell_cfg*/):
+        base(size)
     {
-        for (int x = 0; x < width;  ++x) {
-        for (int y = 0; y < height; ++y) {
+        // for (int x = 0; x < size.x;  ++x) {
+        // for (int y = 0; y < size.y; ++y) {
 
-            GameOfLifeCellCfg cfg = cell_cfg;
-            Vector3 prefab_position = cell_cfg.game_object.transform.position;
-            Vector3 offset = new Vector3 (-width/2 + x, -height/2 + y, 0);
-            Vector3 cell_position = prefab_position + offset;
-            cfg.game_object = Object.Instantiate (cell_cfg.game_object, cell_position, Quaternion.identity);
+        //     GameOfLifeCellCfg cfg = cell_cfg;
+        //     Vector3 prefab_position = cell_cfg.game_object.transform.position;
+        //     Vector3 offset = new Vector3 (-size.x/2 + x, -size.y/2 + y, 0);
+        //     Vector3 cell_position = prefab_position + offset;
+        //     cfg.game_object = Object.Instantiate (cell_cfg.game_object, cell_position, Quaternion.identity);
 
-            tiles_ [x, y] = new GameOfLifeCell (x, y, cfg, false);
-        }}
+        //     tiles_ [x, y] = new GameOfLifeCell (x, y, cfg, false);
+        // }}
 
         alive_cells_    = new HashSet<GameOfLifeCell> ();
         dead_cells_     = new HashSet<GameOfLifeCell> ();
