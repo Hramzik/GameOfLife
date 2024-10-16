@@ -12,11 +12,9 @@ public class Board: MonoBehaviour {
 
     //--------------------------------------------------
 
-    public Board (Vector2Int size) {}
+    public Start () {
 
-    public Board (Vector2Int size) {
-
-        SetSize (size);
+        SetSize (Vector2Int.zero);
     }
 
     public void SetSize (Vector2Int size) {

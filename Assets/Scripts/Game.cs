@@ -9,27 +9,17 @@ public class Game: MonoBehaviour {
 
     public GameOfLifeCellCfg cell_cfg;
 
-    private GameOfLifeableBoard board_;
+    public GameOfLifeableBoard board_;
+    public Level [] levels_;
 
     //--------------------------------------------------
 
     void Start() {
 
-        board_ = new GameOfLifeableBoard (new Vector2Int (10, 10));
-        board_.ReviveTile (0, 0);
-        board_.ReviveTile (0, 1);
-        board_.ReviveTile (1, 0);
-        board_.ReviveTile (1, 1);
+        levels_ = Resources.LoadAll<Level> ("Levels");
 
-        board_.ReviveTile (0, 8);
-        board_.ReviveTile (1, 7);
-        board_.ReviveTile (2, 7);
-        board_.ReviveTile (2, 8);
-        board_.ReviveTile (2, 9);
-
-        board_.ReviveTile (8, 7);
-        board_.ReviveTile (8, 8);
-        board_.ReviveTile (8, 9);
+        LevelLoader loader = new LevelLoader (board_);
+        loader.LoadLevel (levels_ [0]);
 
         InvokeRepeating ("UpdateGameOfLife", 0.5f, 0.5f);
     }

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2e99d0ebfbc604429749132dc89f4f1, type: 3}
+  m_Name: Level 0
+  m_EditorClassIdentifier: 
+  board_size: {x: 10, y: 10}
+  player1_spawn: {x: 0, y: 0}
+  player2_spawn: {x: 0, y: 0}
+  tile_prefab: {fileID: 765723055349656131, guid: abc3c721de26f394ca00e78263cbe2fc, type: 3}
+  level_tile_material: {fileID: 2100000, guid: cbd04d7cc5934d14ba231eba0f2e978e, type: 2}
+  cell_cfg:
+    alive_material: {fileID: 2100000, guid: 906642a3cde19734195856fa19dc0b7f, type: 2}
+    dead_material: {fileID: 2100000, guid: 0a62f3101b0559e4eb91d007e1876b8c, type: 2}
+  level_tile_positions:
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: 2, y: 1}
+  alive_tile_positions: []

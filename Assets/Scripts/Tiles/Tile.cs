@@ -16,7 +16,7 @@ public class Tile: MonoBehaviour {
 
         this.x = x;
         this.y = y;
-        this.game_object = Object.Instantiate (game_object, game_object.transform.position, Quaternion.identity);
+        this.game_object = Object.Instantiate (game_object);
     }
 
     public Tile (Vector2Int position, GameObject game_object):

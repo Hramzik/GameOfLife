@@ -11,3 +11,8 @@ Assembly-CSharp.csproj
 
 # Visual Studio Code
 .vscode/
+.VSCodeCounter/
+
+# My files
+Assets/old.txt
+

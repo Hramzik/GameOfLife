@@ -6,7 +6,8 @@ using UnityEngine;
 //--------------------------------------------------
 
 [System.Serializable]
-public struct Level {
+[CreateAssetMenu(fileName = "NewGameSettings", menuName = "Level", order = 51)]
+public class Level: ScriptableObject {
 
     public Vector2Int board_size;
 
