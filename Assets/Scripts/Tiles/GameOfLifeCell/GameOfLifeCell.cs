@@ -16,12 +16,15 @@ public class GameOfLifeCell: Tile {
 
     //--------------------------------------------------
 
-    public GameOfLifeCell (int x, int y, GameOfLifeCellCfg cfg, bool is_alive):
-        base(x, y, cfg.game_object)
+    public GameOfLifeCell (int x, int y, GameObject game_object, GameOfLifeCellCfg cfg, bool is_alive):
+        base(x, y, game_object)
     {
         cfg_ = cfg;
         set_is_alive (is_alive);
     }
+
+    public GameOfLifeCell (Vector2Int position, GameObject game_object, GameOfLifeCellCfg cfg, bool is_alive):
+        this (position.x, position.y, game_object, cfg, is_alive) {}
 
     public bool is_alive () {
 

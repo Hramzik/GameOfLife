@@ -5,7 +5,7 @@ using UnityEngine;
 
 //--------------------------------------------------
 
-public abstract class Tile {
+public class Tile: MonoBehaviour {
 
     public int x;
     public int y;
@@ -16,11 +16,11 @@ public abstract class Tile {
 
         this.x = x;
         this.y = y;
-        this.game_object = Object.Instantiate (game_object, game_object.Transform.Position, Quaternion.identity);
+        this.game_object = Object.Instantiate (game_object, game_object.transform.position, Quaternion.identity);
     }
 
     public Tile (Vector2Int position, GameObject game_object):
-        this (posiition.x, position.y, game_object) {}
+        this (position.x, position.y, game_object) {}
 }
 
 //--------------------------------------------------

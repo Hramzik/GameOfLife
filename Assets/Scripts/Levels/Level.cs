@@ -15,10 +15,9 @@ public struct Level {
 
     public GameObject tile_prefab;
     public Material level_tile_material;
-    public Material alive_tile_material;
-    public Material  dead_tile_material;
-    public Vector2 [] level_tile_positions;
-    public Vector2 [] alive_tile_positions;
+    public GameOfLifeCellCfg cell_cfg;
+    public Vector2Int [] level_tile_positions;
+    public Vector2Int [] alive_tile_positions;
 }
 
 //--------------------------------------------------
