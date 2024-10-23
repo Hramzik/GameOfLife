@@ -1,0 +1,4 @@
+
+
+как работает целочисленное деление
+obj.transform.localPosition = new Vector3 (-(float) GetSize ().x/2 + x, -(float) GetSize ().y/2 + y, 0);

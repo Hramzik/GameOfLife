@@ -14,31 +14,39 @@ public class GameOfLifeCell: Tile {
     private bool is_alive_;
     private GameOfLifeCellCfg cfg_;
 
+    private Renderer renderer_;
+
     //--------------------------------------------------
 
-    public GameOfLifeCell (int x, int y, GameObject game_object, GameOfLifeCellCfg cfg, bool is_alive):
-        base(x, y, game_object)
-    {
+    public void SetCfg (GameOfLifeCellCfg cfg) {
+
         cfg_ = cfg;
-        set_is_alive (is_alive);
     }
 
-    public GameOfLifeCell (Vector2Int position, GameObject game_object, GameOfLifeCellCfg cfg, bool is_alive):
-        this (position.x, position.y, game_object, cfg, is_alive) {}
-
-    public bool is_alive () {
+    public bool IsAlive () {
 
         return is_alive_;
     }
 
-    public void set_is_alive (bool flag) {
+    public void SetIsAlive (bool flag) {
 
         is_alive_ = flag;
+    }
 
-        //--------------------------------------------------
+    public void Start () {
 
-        Renderer renderer = game_object.GetComponent<Renderer> ();
-        renderer.material = is_alive_ ? cfg_.alive_material : cfg_.dead_material;
+        renderer_ = GetComponent<Renderer> ();
+    }
+
+    public void Update () {
+
+        renderer_.material = is_alive_ ? cfg_.alive_material : cfg_.dead_material;
+        renderer_.enabled  = is_alive_;
+    }
+
+    public void FixedUpdate () {
+
+        GetComponent<BoxCollider2D>().enabled = is_alive_;
     }
 }
 

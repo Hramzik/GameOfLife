@@ -1,6 +1,7 @@
 
 //--------------------------------------------------
 
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,10 +13,26 @@ public class Board: MonoBehaviour {
 
     //--------------------------------------------------
 
-    public Start () {
+    public void Start () {
 
         SetSize (Vector2Int.zero);
     }
+
+    // по координатам клеток! 0, 0 - центр нулевого квадрата, а не угол карты!
+    public void AddObject (float x, float y, GameObject obj) {
+
+        obj.transform.parent = transform;
+        float local_x = -(float) GetSize ().x/2 + x + 0.5f;
+        float local_y = -(float) GetSize ().y/2 + y + 0.5f;
+        obj.transform.localPosition = new Vector3 (local_x, local_y, 0);
+    }
+
+    public void AddObject (Vector2 position, GameObject obj) {
+
+        AddObject (position.x, position.y, obj);
+    }
+
+    //--------------------------------------------------
 
     public void SetSize (Vector2Int size) {
 
@@ -27,20 +44,16 @@ public class Board: MonoBehaviour {
         return new Vector2Int (tiles_.GetLength(0), tiles_.GetLength(1));
     }
 
-    public void SetTile (int x, int y, Tile tile_prefab) {
+    public virtual void SetTile (Vector2Int position, Tile tile) {
 
-        if (x < 0 || x >= tiles_.GetLength(0)) { Debug.Log ("Invalid index"); return; }
-        if (y < 0 || y >= tiles_.GetLength(1)) { Debug.Log ("Invalid index"); return; }
+        if (position.x < 0 || position.x >= tiles_.GetLength(0)) { Debug.Log ("Invalid index"); return; }
+        if (position.y < 0 || position.y >= tiles_.GetLength(1)) { Debug.Log ("Invalid index"); return; }
 
-        Tile tile = Instantiate (tile_prefab, new Vector3 (-GetSize ().x/2 + x, -GetSize ().y/2 + y, 0), Quaternion.identity);
-        tile.transform.parent = transform;
+        tile.SetPosition (position);
+        AddObject (position, tile.gameObject);
 
-        tiles_[x, y] = tile;
-    }
-
-    public void SetTile (Vector2Int position, Tile tile_prefab) {
-
-        SetTile (position.x, position.y, tile_prefab);
+        Destroy (tiles_ [position.x, position.y]);
+        tiles_ [position.x, position.y] = tile;
     }
 
     public Tile GetTile (int x, int y) {

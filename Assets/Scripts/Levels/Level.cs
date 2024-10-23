@@ -6,11 +6,13 @@ using UnityEngine;
 //--------------------------------------------------
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "NewGameSettings", menuName = "Level", order = 51)]
+[CreateAssetMenu (fileName = "Level", menuName = "Level")]
 public class Level: ScriptableObject {
 
     public Vector2Int board_size;
 
+    public GameObject player1_prefab;
+    public GameObject player2_prefab;
     public Vector2Int player1_spawn;
     public Vector2Int player2_spawn;
 

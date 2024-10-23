@@ -14,9 +14,10 @@ public class GameOfLifeableBoard: Board {
 
     //--------------------------------------------------
 
-    public Start ():
-        base()
-    {
+    public new void Start () {
+
+        base.Start ();
+
         alive_cells_    = new HashSet<GameOfLifeCell> ();
         dead_cells_     = new HashSet<GameOfLifeCell> ();
         cells_to_check_ = new HashSet<GameOfLifeCell> ();
@@ -24,16 +25,18 @@ public class GameOfLifeableBoard: Board {
 
     //--------------------------------------------------
 
-    public void ReviveTile (int x, int y) {
+    public override void SetTile (Vector2Int position, Tile tile) {
 
-        Tile tile = GetTile (x, y);
-        GameOfLifeCell cell = tile as GameOfLifeCell;
-        if (cell == null) return;
+        base.SetTile (position, tile);
 
         //--------------------------------------------------
 
-        cell.set_is_alive (true);
+        GameOfLifeCell cell = tile as GameOfLifeCell;
+        if (cell == null)     return;
+        if (!cell.IsAlive ()) return;
+
         alive_cells_.Add (cell);
+        UpdateCellsToCheck ();
     }
 
     public void UpdateBoard () {
@@ -65,7 +68,7 @@ public class GameOfLifeableBoard: Board {
         foreach (GameOfLifeCell cell in cells_to_check_) {
 
             int neighbor_count = CountNeighbors (cell);
-            bool alive = cell.is_alive ();
+            bool alive = cell.IsAlive ();
 
             if (!alive && neighbor_count == 3) {
 
@@ -84,8 +87,8 @@ public class GameOfLifeableBoard: Board {
 
     private void UpdateCells () {
 
-        foreach (GameOfLifeCell cell in alive_cells_) cell.set_is_alive (true);
-        foreach (GameOfLifeCell cell in dead_cells_)  cell.set_is_alive (false);
+        foreach (GameOfLifeCell cell in alive_cells_) cell.SetIsAlive (true);
+        foreach (GameOfLifeCell cell in dead_cells_)  cell.SetIsAlive (false);
     }
 
     private int CountNeighbors (GameOfLifeCell center_tile) {
@@ -97,7 +100,7 @@ public class GameOfLifeableBoard: Board {
             if (dx == 0 && dy == 0) continue;
 
             Tile neighbor = GetTile (center_tile.x + dx, center_tile.y + dy);
-            if (neighbor is GameOfLifeCell tile && tile.is_alive ()) count++;
+            if (neighbor is GameOfLifeCell tile && tile.IsAlive ()) count++;
         }}
 
         return count;
