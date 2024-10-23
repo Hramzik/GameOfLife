@@ -33,6 +33,8 @@ public class GameOfLifeCell: Tile {
         is_alive_ = flag;
     }
 
+    //--------------------------------------------------
+
     public void Start () {
 
         renderer_ = GetComponent <Renderer> ();
@@ -43,12 +45,23 @@ public class GameOfLifeCell: Tile {
         if (cfg_.alive_material == null) Debug.Log ("HUY");
         if (cfg_.dead_material == null) Debug.Log ("HU1Y");
         renderer_.material = is_alive_ ? cfg_.alive_material : cfg_.dead_material;
-        renderer_.enabled  = is_alive_;
+        //renderer_.enabled  = is_alive_;
     }
 
     public void FixedUpdate () {
 
-        GetComponent<BoxCollider2D> ().enabled = is_alive_;
+        GetComponent<BoxCollider2D> ().isTrigger = !is_alive_;
+    }
+
+    //--------------------------------------------------
+
+    void OnMouseDown () {
+
+        GameOfLifeableBoard board = transform.parent.GetComponent<GameOfLifeableBoard> ();
+        if (board == null) return;
+
+        board.ReviveTile (new Vector2Int (x, y));
+        //Debug.Log ("clicked");
     }
 }
 

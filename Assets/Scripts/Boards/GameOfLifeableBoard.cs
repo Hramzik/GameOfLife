@@ -38,14 +38,24 @@ public class GameOfLifeableBoard: Board {
         UpdateCellsToCheck ();
     }
 
+    public void ReviveTile (Vector2Int position) {
+
+        GameOfLifeCell cell = GetTile (position) as GameOfLifeCell;
+        if (cell == null) return;
+
+        cell.SetIsAlive (true);
+        alive_cells_.Add (cell);;
+        UpdateCellsToCheck ();
+    }
+
+    //--------------------------------------------------
+
     public void UpdateBoard () {
 
         UpdateCellsToCheck ();
         UpdateSets ();
         UpdateCells ();
     }
-
-    //--------------------------------------------------
 
     private void UpdateCellsToCheck () {
 

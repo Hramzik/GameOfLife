@@ -17,9 +17,8 @@ public class PlayerController: MonoBehaviour {
     private float speed = 5.0f;
     private float jump_speed = 7.0f;
 
-    //public GameObject bulletPrefab;
-    //public Transform bulletSpawnPoint;
-    //public float bulletSpeed = 10.0f;
+    public Transform bullet_spawn;
+    public BulletCfg bullet_cfg;
 
     private Rigidbody2D rigit_body_;
 
@@ -30,6 +29,18 @@ public class PlayerController: MonoBehaviour {
     private float jump_interval_window = 0.5f;
     private float last_pressed_jump_time_ = -1;
 
+    private bool is_dead_ = false;
+
+    //--------------------------------------------------
+
+    public void Die () {
+
+        is_dead_ = true;
+        GetComponent<Renderer> ().enabled = false;
+    }
+
+    //--------------------------------------------------
+
     public void Start () {
 
         rigit_body_ = GetComponent<Rigidbody2D> ();
@@ -38,15 +49,7 @@ public class PlayerController: MonoBehaviour {
 
     public void Update () {
 
-        Vector2 direction = Vector2.zero;
-        if (Input.GetKey (controls.left_key))  direction += Vector2.left;
-        if (Input.GetKey (controls.right_key)) direction += Vector2.right;
-
-        rigit_body_.velocity = new Vector2 (direction.x * speed, rigit_body_.velocity.y);
-
-        if (Input.GetKeyDown (controls.jump_key)) last_pressed_jump_time_ = Time.time;
-        //if (Input.GetKeyDown(shoot_key)) Shoot();
-
+        CheckControlls ();
         UpdateSpriteDirection ();
     }
 
@@ -54,6 +57,24 @@ public class PlayerController: MonoBehaviour {
 
         UpdateGrounded ();
         CheckForJump ();
+    }
+
+    //--------------------------------------------------
+
+    private void CheckControlls () {
+
+        if (is_dead_) return;
+
+        //--------------------------------------------------
+
+        Vector2 direction = Vector2.zero;
+        if (Input.GetKey (controls.left_key))  direction += Vector2.left;
+        if (Input.GetKey (controls.right_key)) direction += Vector2.right;
+
+        rigit_body_.velocity = new Vector2 (direction.x * speed, rigit_body_.velocity.y);
+
+        if (Input.GetKeyDown (controls.jump_key)) last_pressed_jump_time_ = Time.time;
+        if (Input.GetKeyDown (controls.shoot_key)) Shoot ();
     }
 
     //--------------------------------------------------
@@ -69,6 +90,11 @@ public class PlayerController: MonoBehaviour {
         Vector3 local_scale = transform.localScale;
         local_scale.x = mirror_coefficient * Mathf.Abs (local_scale.x);
         transform.localScale = local_scale;
+    }
+
+    private bool IsFacingRight () {
+
+        return transform.localScale.x > 0 ? true : false;
     }
 
     private void UpdateGrounded () {
@@ -99,8 +125,18 @@ public class PlayerController: MonoBehaviour {
 
     private void Shoot () {
 
-        //GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
-        //Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-        //bulletRb.velocity = Vector2.right * bulletSpeed;
+        GameObject bullet = Instantiate (bullet_cfg.bullet_prefab, bullet_spawn.position, bullet_spawn.rotation);
+        Rigidbody2D bullet_rb = bullet.GetComponent<Rigidbody2D> ();
+
+        //--------------------------------------------------
+        // set velocity
+
+        Vector2 direction = IsFacingRight () ? Vector2.right : Vector2.left;
+        bullet_rb.velocity = direction * bullet_cfg.bullet_speed;
+
+        //--------------------------------------------------
+        // set owner
+
+        bullet.GetComponent<Bullet> ().owner = gameObject;
     }
 }
