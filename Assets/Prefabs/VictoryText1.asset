@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 054f4c5c9ead39d41a6e0a7edd3ea5fe, type: 3}
-  m_Name: Bullet1Cfg
+  m_Script: {fileID: 11500000, guid: c3e5cf47c9a2907458204ae228115844, type: 3}
+  m_Name: VictoryText1
   m_EditorClassIdentifier: 
-  bullet_prefab: {fileID: 3659782339593124434, guid: cdf961abe7f95de4683da688546047f3, type: 3}
-  bullet_speed: 10
+  message: Pink wins!
+  color: {r: 0.7509433, g: 0.08926304, b: 0.7235886, a: 1}

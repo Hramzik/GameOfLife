@@ -204,9 +204,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbe5c88872cd5b44fab1e7bfbb63027b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  victory_text: {fileID: 11400000, guid: 805ceca20d572e445b69efe1b1d2afa0, type: 2}
   controls: {fileID: 11400000, guid: d73e7db37d1c474448dc83fbd9626518, type: 2}
   bullet_spawn: {fileID: 8901650171124773519}
-  bullet_cfg: {fileID: 11400000, guid: b1278ed5c335c654b88ac90879c7c54b, type: 2}
+  bullet_cfg: {fileID: 11400000, guid: cd8986731a4afc54fb4670094b72407c, type: 2}
   ground_layer:
     serializedVersion: 2
     m_Bits: 64

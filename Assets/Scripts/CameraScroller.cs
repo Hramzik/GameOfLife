@@ -14,9 +14,7 @@ public class CameraScroll: MonoBehaviour {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll == 0) return;
 
-        Vector3 new_position = transform.position;
-        new_position.z += scroll * scroll_speed;
-        transform.position = new_position;
+        GetComponent<Camera> ().orthographicSize -= scroll_speed * scroll;
     }
 }
 

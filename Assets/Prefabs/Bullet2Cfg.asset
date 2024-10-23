@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 054f4c5c9ead39d41a6e0a7edd3ea5fe, type: 3}
   m_Name: Bullet2Cfg
-  m_EditorClassIdentifier: Assembly-CSharp::BulletCfg
+  m_EditorClassIdentifier: 
   bullet_prefab: {fileID: 3659782339593124434, guid: 250f3cfe1dd23eb44a420cc2252150a8, type: 3}
   bullet_speed: 10

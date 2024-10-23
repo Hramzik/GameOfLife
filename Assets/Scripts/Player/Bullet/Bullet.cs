@@ -8,7 +8,7 @@ using UnityEngine;
 public class Bullet: MonoBehaviour {
 
     public float lifetime = 20f;
-    public GameObject owner;
+    public PlayerController owner;
 
     void Start () {
 
@@ -24,8 +24,10 @@ public class Bullet: MonoBehaviour {
         PlayerController player = collider.GetComponent<PlayerController> ();
         if (player != null) {
 
-            if (collider == owner) return;
+            if (player == owner) return;
             player.Die ();
+            owner.Deactivate ();
+            owner.Win ();
         }
 
         //--------------------------------------------------

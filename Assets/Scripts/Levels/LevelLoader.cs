@@ -18,14 +18,39 @@ public class LevelLoader: MonoBehaviour {
         board_ = board;
     }
 
+    //--------------------------------------------------
+
     public void LoadLevel (Level level) {
 
+        ClearBoard ();
+
+        //--------------------------------------------------
+
         board_.SetSize (level.board_size);
+        ScaleCamera (level);
+
+        //--------------------------------------------------
 
         SpawnTiles   (level);
         SpawnPlayers (level);
         SpawnGrid (level);
         SpawnBackground (level);
+    }
+
+    private void ClearBoard () {
+
+        Transform [] children = board_.GetComponentsInChildren<Transform> ();
+
+        foreach (Transform child in children) {
+
+            if (child.GetComponent<PlayerController> () != null) Destroy(child.gameObject);
+            if (child.GetComponent<Tile>             () != null) Destroy(child.gameObject);
+        }
+    }
+
+    private void ScaleCamera (Level level) {
+
+        Camera.main.orthographicSize = level.board_size.y;
     }
 
     private void SpawnGrid (Level level) {
@@ -43,8 +68,10 @@ public class LevelLoader: MonoBehaviour {
         background_.transform.localPosition = new Vector3 (0, 0, 2f);
 
         // scale
-        float scaling = board_.GetSize ().y / background_.bounds.size.y;
-        scaling *= 1.5f;
+        float scaling1 = level.board_size.y / background_.bounds.size.y;
+        float scaling2 = level.board_size.x / background_.bounds.size.x;
+        float scaling  = Mathf.Max (scaling1, scaling2);
+        scaling *= 2f;
         Vector3 local_scale = background_.transform.localScale;
         Vector3 new_scale = new Vector3 (local_scale.x * scaling, local_scale.y * scaling, local_scale.z);
         background_.transform.localScale = new_scale;
@@ -52,13 +79,22 @@ public class LevelLoader: MonoBehaviour {
 
     private void SpawnPlayers (Level level) {
 
+        //--------------------------------------------------
+        // create players
+
         var obj1 = Object.Instantiate (level.player1_prefab);
         board_.AddObject (level.player1_spawn, obj1);
 
-        //--------------------------------------------------
-
         var obj2 = Object.Instantiate (level.player2_prefab);
         board_.AddObject (level.player2_spawn, obj2);
+
+        //--------------------------------------------------
+        // update players in GameEnder
+
+        GameEnder game_ender = transform.parent.GetComponent<Game> ().game_ender_;
+        game_ender.players = new PlayerController [2];
+        game_ender.players [0] = obj1.GetComponent<PlayerController> ();
+        game_ender.players [1] = obj2.GetComponent<PlayerController> ();
     }
 
     private void SpawnTiles (Level level) {

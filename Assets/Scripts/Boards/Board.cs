@@ -58,8 +58,8 @@ public class Board: MonoBehaviour {
 
     public Tile GetTile (int x, int y) {
 
-        if (x < 0 || x >= GetSize ().x) { Debug.Log ("Invalid index"); return null; }
-        if (y < 0 || y >= GetSize ().y) { Debug.Log ("Invalid index"); return null; }
+        if (x < 0 || x >= GetSize ().x) { /*Debug.Log ("Invalid index");*/ return null; }
+        if (y < 0 || y >= GetSize ().y) { /*Debug.Log ("Invalid index");*/ return null; }
 
         return tiles_[x, y];
     }

@@ -7,11 +7,7 @@ using UnityEngine;
 
 public class PlayerController: MonoBehaviour {
 
-    //public static PlayerControls player1_controls = new PlayerControls (KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.Space);
-    //public static PlayerControls player2_controls = new PlayerControls (KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.DownArrow);
-
-    //--------------------------------------------------
-
+    public VictoryText victory_text;
     public PlayerControls controls;
 
     private float speed = 5.0f;
@@ -29,16 +25,37 @@ public class PlayerController: MonoBehaviour {
     private float jump_interval_window = 0.5f;
     private float last_pressed_jump_time_ = -1;
 
-    private bool is_dead_ = false;
+    private bool is_dead_   = false;
+    private bool is_active_ = true;
 
     //--------------------------------------------------
 
+    public void Win () {
+
+        transform.parent.parent.GetComponent<Game> ().EndGame (victory_text);
+    }
+
+    public void Deactivate () {
+
+        is_active_ = false;
+        GetComponent<Rigidbody2D> ().simulated = false;
+    }
+
     public void Die () {
 
-        is_dead_ = true;
+        if (is_dead_) return;
+
+        //--------------------------------------------------
+
+        is_dead_   = true;
+        is_active_ = false;
         GetComponent<Renderer> ().enabled = false;
     }
 
+    public bool IsDead () {
+
+        return is_dead_;
+    }
     //--------------------------------------------------
 
     public void Start () {
@@ -55,6 +72,7 @@ public class PlayerController: MonoBehaviour {
 
     public void FixedUpdate () {
 
+        CheckOutOfMap ();
         UpdateGrounded ();
         CheckForJump ();
     }
@@ -63,7 +81,7 @@ public class PlayerController: MonoBehaviour {
 
     private void CheckControlls () {
 
-        if (is_dead_) return;
+        if (!is_active_) return;
 
         //--------------------------------------------------
 
@@ -75,6 +93,11 @@ public class PlayerController: MonoBehaviour {
 
         if (Input.GetKeyDown (controls.jump_key)) last_pressed_jump_time_ = Time.time;
         if (Input.GetKeyDown (controls.shoot_key)) Shoot ();
+    }
+
+    private void CheckOutOfMap () {
+
+        if (transform.localPosition.y < -20) Die ();
     }
 
     //--------------------------------------------------
@@ -137,6 +160,6 @@ public class PlayerController: MonoBehaviour {
         //--------------------------------------------------
         // set owner
 
-        bullet.GetComponent<Bullet> ().owner = gameObject;
+        bullet.GetComponent<Bullet> ().owner = this;
     }
 }

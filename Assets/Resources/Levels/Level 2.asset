@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2e99d0ebfbc604429749132dc89f4f1, type: 3}
+  m_Name: Level 2
+  m_EditorClassIdentifier: 
+  board_size: {x: 15, y: 10}
+  player1_prefab: {fileID: 1428307857247101347, guid: 2e7ce39277b9ed1409383395f11b19a8, type: 3}
+  player2_prefab: {fileID: 5200293312495545747, guid: e9b5b0bc2baded444b484566ad740e18, type: 3}
+  player1_spawn: {x: 1, y: 11}
+  player2_spawn: {x: 14, y: 11}
+  tile_prefab: {fileID: 765723055349656131, guid: abc3c721de26f394ca00e78263cbe2fc, type: 3}
+  level_tile_material: {fileID: 2100000, guid: cbd04d7cc5934d14ba231eba0f2e978e, type: 2}
+  cell_cfg:
+    alive_material: {fileID: 2100000, guid: 906642a3cde19734195856fa19dc0b7f, type: 2}
+    dead_material: {fileID: 2100000, guid: 0a62f3101b0559e4eb91d007e1876b8c, type: 2}
+  level_tile_positions:
+  - {x: 0, y: 0}
+  - {x: 14, y: 0}
+  - {x: 3, y: 0}
+  - {x: 4, y: 0}
+  - {x: 5, y: 0}
+  - {x: 6, y: 0}
+  - {x: 8, y: 0}
+  - {x: 9, y: 0}
+  - {x: 10, y: 0}
+  - {x: 11, y: 0}
+  - {x: 7, y: 2}
+  - {x: 7, y: 6}
+  alive_tile_positions:
+  - {x: 1, y: 8}
+  - {x: 2, y: 8}
+  - {x: 3, y: 8}
+  - {x: 12, y: 7}
+  - {x: 13, y: 7}
+  - {x: 14, y: 7}
+  - {x: 1, y: 1}
+  - {x: 1, y: 2}
+  - {x: 2, y: 1}
+  - {x: 2, y: 2}
+  - {x: 3, y: 3}
+  - {x: 3, y: 4}
+  - {x: 4, y: 3}
+  - {x: 4, y: 4}
+  - {x: 10, y: 3}
+  - {x: 10, y: 4}
+  - {x: 11, y: 3}
+  - {x: 11, y: 4}
+  - {x: 12, y: 1}
+  - {x: 12, y: 2}
+  - {x: 13, y: 1}
+  - {x: 13, y: 2}
