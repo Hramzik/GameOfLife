@@ -52,7 +52,7 @@ public class Board: MonoBehaviour {
         tile.SetPosition (position);
         AddObject (position, tile.gameObject);
 
-        Destroy (tiles_ [position.x, position.y]);
+        if (tiles_ [position.x, position.y] is Tile old_tile) Destroy (old_tile.gameObject);
         tiles_ [position.x, position.y] = tile;
     }
 

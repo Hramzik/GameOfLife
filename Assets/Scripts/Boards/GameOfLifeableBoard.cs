@@ -32,10 +32,9 @@ public class GameOfLifeableBoard: Board {
         //--------------------------------------------------
 
         GameOfLifeCell cell = tile as GameOfLifeCell;
-        if (cell == null)     return;
-        if (!cell.IsAlive ()) return;
+        if (cell == null) return;
 
-        alive_cells_.Add (cell);
+        if (cell.IsAlive ()) alive_cells_.Add (cell);;
         UpdateCellsToCheck ();
     }
 

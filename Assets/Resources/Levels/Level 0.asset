@@ -16,7 +16,7 @@ MonoBehaviour:
   player1_prefab: {fileID: 1428307857247101347, guid: 2e7ce39277b9ed1409383395f11b19a8, type: 3}
   player2_prefab: {fileID: 5200293312495545747, guid: e9b5b0bc2baded444b484566ad740e18, type: 3}
   player1_spawn: {x: 0, y: 3}
-  player2_spawn: {x: 2, y: 3}
+  player2_spawn: {x: 9, y: 3}
   tile_prefab: {fileID: 765723055349656131, guid: abc3c721de26f394ca00e78263cbe2fc, type: 3}
   level_tile_material: {fileID: 2100000, guid: cbd04d7cc5934d14ba231eba0f2e978e, type: 2}
   cell_cfg:
@@ -26,4 +26,10 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 1}
   - {x: 2, y: 1}
-  alive_tile_positions: []
+  - {x: 7, y: 1}
+  - {x: 8, y: 1}
+  - {x: 9, y: 1}
+  alive_tile_positions:
+  - {x: 5, y: 2}
+  - {x: 5, y: 3}
+  - {x: 5, y: 4}

@@ -31,7 +31,7 @@ public class LevelLoader: MonoBehaviour {
     private void SpawnGrid (Level level) {
 
         grid_renderer_.transform.parent = board_.transform;
-        grid_renderer_.transform.localPosition = new Vector3 (0, 0, 0.5f);
+        grid_renderer_.transform.localPosition = new Vector3 (0, 0, 1f);
         grid_renderer_.SetSize (level.board_size);
         grid_renderer_.DrawGrid ();
     }
@@ -40,7 +40,7 @@ public class LevelLoader: MonoBehaviour {
 
         // position
         background_.transform.parent = board_.transform;
-        background_.transform.localPosition = new Vector3 (0, 0, 1.5f);
+        background_.transform.localPosition = new Vector3 (0, 0, 2f);
 
         // scale
         float scaling = board_.GetSize ().y / background_.bounds.size.y;

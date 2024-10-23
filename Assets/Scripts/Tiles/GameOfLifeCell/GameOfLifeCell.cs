@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class GameOfLifeCell: Tile {
 
-    private bool is_alive_;
+    public bool is_alive_;
     private GameOfLifeCellCfg cfg_;
 
     private Renderer renderer_;
@@ -35,18 +35,20 @@ public class GameOfLifeCell: Tile {
 
     public void Start () {
 
-        renderer_ = GetComponent<Renderer> ();
+        renderer_ = GetComponent <Renderer> ();
     }
 
     public void Update () {
 
+        if (cfg_.alive_material == null) Debug.Log ("HUY");
+        if (cfg_.dead_material == null) Debug.Log ("HU1Y");
         renderer_.material = is_alive_ ? cfg_.alive_material : cfg_.dead_material;
         renderer_.enabled  = is_alive_;
     }
 
     public void FixedUpdate () {
 
-        GetComponent<BoxCollider2D>().enabled = is_alive_;
+        GetComponent<BoxCollider2D> ().enabled = is_alive_;
     }
 }
 

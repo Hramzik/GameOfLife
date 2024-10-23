@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class Game: MonoBehaviour {
 
-    public GameOfLifeCellCfg cell_cfg;
-
     public GameOfLifeableBoard board_;
     public Level [] levels_;
     public LevelLoader level_loader_;
