@@ -71,7 +71,7 @@ public class LevelLoader: MonoBehaviour {
         float scaling1 = level.board_size.y / background_.bounds.size.y;
         float scaling2 = level.board_size.x / background_.bounds.size.x;
         float scaling  = Mathf.Max (scaling1, scaling2);
-        scaling *= 2f;
+        scaling *= 2.5f;
         Vector3 local_scale = background_.transform.localScale;
         Vector3 new_scale = new Vector3 (local_scale.x * scaling, local_scale.y * scaling, local_scale.z);
         background_.transform.localScale = new_scale;
